@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Modify Item
+{% endblock %}
+
+{% block main %}
+    <form action="/modify/{{rows[0].id}}" method="post">
+        <div class="mb-3">
+            <label for="siteurl">Site URL</label>
+            <input  autofocus class="form-control mx-auto w-auto" id="siteurl" name="siteurl" value="{{rows[0].siteurl}}">
+        </div>
+        <div class="mb-3">
+            <label for="nickname">Nick Name</label>
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="nickname" name="nickname" value="{{rows[0].nickname}}">
+        </div>
+        <div class="mb-3">
+            <label for="username">User Name</label>
+            <input class="form-control mx-auto w-auto" id="username" name="username" value="{{rows[0].username}}">
+        </div>
+        <div class="mb-3">
+            <label for="sitepassword">Password</label>
+            <input class="form-control mx-auto w-auto" id="sitepassword" name="sitepassword" value="{{password}}">
+        </div>
+        <div class="mb-3">
+            <label for="confirmation">Confirmation</label>
+            <input class="form-control mx-auto w-auto" id="confirmation" name="confirmation" value="{{password}}">
+        </div>
+        <button class="btn btn-primary" type="submit">Submit</button>
+        <button class="btn btn-primary" type="button" id="cancel">Cancel</button>
+    </form>
+    <script>
+        var id = "{{rows[0].id}}";
+    </script>
+    <script src="/static/scripts_modifypassword.js"></script>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+    <form action="/" method="get">
+        <main class="container py-5 text-center">
+            <div class="flex-container">
+                <a href="/addpassword" class ="button">Add</a>
+            </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Site URL</th>
+                        <th>Nick Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                <!-- TODO: Loop through the database entries to display them in this table -->
+                {% for row in rows %}
+                    <tr>
+                        <td><a href="{{ url_for('detail', id=row.id) }}">{{ row.siteurl }}</a></td>
+                        <td><a href="{{ url_for('detail', id=row.id) }}">{{ row.nickname }}</a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </main>
+    </form>
+{% endblock %}

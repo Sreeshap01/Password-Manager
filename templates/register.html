@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+    <form action="/register" method="post">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="username" name="username" placeholder="Username" type="text">
+        </div>
+        <div class="mb-3 popup">
+            <input class="form-control mx-auto w-auto" id="password" name="password" placeholder="Password" type="password">
+                <span class="form-control mx-auto w-auto popuptext" id="myPopup">
+                    <div id="letter">1 letter</div>
+                    <div id="number">1 number</div>
+                    <div id="characters">8 characters</div>
+                </span>
+        </div>
+        <div class="mb-3">
+            <input class="form-control mx-auto w-auto" id="confirmation" name="confirmation" placeholder="Confirmation" type="password">
+        </div>
+        <button class="btn btn-primary" type="submit">Register</button>
+    </form>
+    <script src="/static/scripts_register.js"></script>
+{% endblock %}

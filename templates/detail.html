@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Detail View
+{% endblock %}
+
+{% block main %}
+    <form action="/detail" method="get">
+        <div class="mb-3">
+            <label for="siteurl">Site URL</label>
+            <input  autofocus class="form-control mx-auto w-auto" id="siteurl" name="siteurl" value="{{rows[0].siteurl}}" readonly>
+        </div>
+        <div class="mb-3">
+            <label for="nickname">Nick Name</label>
+            <input  autofocus class="form-control mx-auto w-auto" id="nickname" name="nickname" value="{{rows[0].nickname}}" readonly>
+        </div>
+        <div class="mb-3">
+            <label for="username">User Name</label>
+            <input class="form-control mx-auto w-auto" id="username" name="username" value="{{rows[0].username}}" readonly>
+        </div>
+        <a class ="btn btn-primary" href="{{ url_for('modify', id=id) }}" id="modify">Modify</a>
+        <button class ="btn btn-primary" onclick="confirmDelete(this.dataset.id)" data-id= "{{ id}}" id="delete" >Delete</button>
+        <button class="btn btn-primary" type="button" id="cancel">Cancel</button>
+    </form>
+    <script src="/static/scripts_addpassword.js"></script>
+    <script>
+        function confirmDelete(id) {
+            event.preventDefault();
+            if (confirm("Are you sure you want to delete this item?")) {
+                    fetch('/delete/' + id, { method: 'DELETE' })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (data.result === 'success') {
+                            window.location.href = "/";
+                        }
+                    })
+                    .catch(error => console.error('There has been a problem with your fetch operation: ', error));
+            }
+        };
+    </script>
+{% endblock %}
